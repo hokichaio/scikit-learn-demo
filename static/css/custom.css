@@ -375,6 +375,6 @@ li.L5, li.L6, li.L7, li.L8
 
 canvas {
   border: 1px solid #ccc;
-  width: 240px;
-  height:240px;
+  width: 80px !important;
+  height: 80px !important;
 }

@@ -22,7 +22,9 @@ $(document).ready(function() {
     $.ajax({
         url: '/api/drawings',
         method: 'POST',
-        data: {'note': 'TODO'},
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({img: document.getElementById('simple_sketch').toDataURL()}),
         success: function(data){
           var message = "Nice drawing, is that " + data.guess.toString() + "?";
           var correct_digit = prompt(message, data.guess);

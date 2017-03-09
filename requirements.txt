@@ -2,3 +2,4 @@ Flask
 psycopg2
 scikit-learn
 gunicorn
+pillow
