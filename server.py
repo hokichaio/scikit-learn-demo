@@ -77,7 +77,7 @@ def draw_digit():
     # TODOL replace drawn with image (mapped to 8 x 8) from request
     drawn = [[0, 0, 0, 20, 20, 0, 0, 0]] * 8
     guess, identifier = predictor.predict(drawn)
-    return json.dumps({'guess': guess, 'id': identifier}), 201
+    return json.jsonify(guess=guess, id=identifier), 201
 
 
 @app.route('/api/drawings/<int:id>', methods=['PATCH'])
