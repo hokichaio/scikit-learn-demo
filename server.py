@@ -55,14 +55,15 @@ class NumberDrawingPredictor:
 
     def predict(self, pixels):
         # NOTE: pixels is a 2D (8 x 8) integer array
+        guess = int(self.classifier.predict([flatten(pixels)])[0])
         with db_conn.cursor(cursor_factory=Cursor) as cursor:
             cursor.execute(
-                "INSERT INTO numbers (pixels) VALUES (%(pixels)s) RETURNING id",
-                dict(pixels=pixels)
+                "INSERT INTO numbers (digit, pixels) VALUES (%(digit)s, %(pixels)s) RETURNING id",
+                dict(digit=guess, pixels=pixels)
             )
             res = cursor.fetchone()
             db_conn.commit()
-            return int(self.classifier.predict([flatten(pixels)])[0]), res.get('id')
+            return guess, res.get('id')
 
 
 @app.route('/', methods=['GET'])
